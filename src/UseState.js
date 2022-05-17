@@ -27,13 +27,14 @@ function UseState() {
   }
   return (
     <div>
+      <h2>Learning useState</h2>
       <h1>Total:{total}</h1>
       <button onClick={increment}>+1 count</button>
       <button onClick={decrement}>-1 count</button>
+      <button onClick={updateTitle}>New</button>
       <pre>
         {JSON.stringify(state,null,2)}
       </pre>
-      <button onClick={updateTitle}>New</button>
 
     </div>
   );
