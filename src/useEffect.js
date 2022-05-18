@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
 
-function UseEffect() {
+export const 
+UseEffect = ()=> {
   const [type, setType] = useState("users");
   const [data, setData] = useState([]);
-  const [pos,setPos] = useState({x:0, y:0})
+  const [pos, setPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/${type}`)
       .then((response) => response.json())
       .then((json) => setData(json));
-  }, [type]);
+  return ()=>{
+    console.log("cleanIt");
+  }
+    }, [type]);
 
-
-  function mouseMoveHandler (event){
+  function mouseMoveHandler(event) {
     setPos({
       x: event.clientX,
-      y: event.clientY
-  })
-  
-}
+      y: event.clientY,
+    });
+  }
 
-
-
-
-  useEffect(()=>{
+  useEffect(() => {
     console.log("component dead ");
-    
-    window.addEventListener("mousemove", mouseMoveHandler)
-  
-})
+
+    window.addEventListener("mousemove", mouseMoveHandler);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMoveHandler);
+    };
+  }, []);
   return (
     <div>
       <div style={{ borderBottom: "1px solid black" }}></div>
@@ -39,10 +41,9 @@ function UseEffect() {
       <button onClick={() => setType("posts")}>Посты</button>
 
       {/* <pre>{JSON.stringify(data, null , 2)}</pre> */}
-      <pre>{JSON.stringify(pos, null , 2)}</pre>
-
+      <pre>{JSON.stringify(pos, null, 2)}</pre>
     </div>
   );
 }
 
-export default UseEffect;
+
