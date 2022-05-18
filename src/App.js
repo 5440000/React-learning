@@ -1,24 +1,28 @@
 import React, { useState } from "react";
+import { ClassComponent } from "./components/ClassComponent";
+import { FunctionComponent } from "./components/FunctionComponent";
 
-function App() {
-  const [total, setTotal] = useState(0);
-  function increment() {
-    setTotal(total + 1);
-  }
-
-  function decrement() {
-    setTotal(total - 1);
-  }
+export const App = () => {
+  const [classString, setClassString] = useState("");
+  const [funcString, setFuncString] = useState("");
+  const [showHellowComponent, toggleComponents] = useState(false);
 
   return (
-    <div>
-      <h1>Total:{total}</h1>
-      <div>
-        <button onClick={increment}>+1 count</button>
-        <button onClick={decrement}>-1 count</button>
-      </div>
-    </div>
+    <>
+      {showHellowComponent ? (
+        <div>Hello World!</div>
+      ) : (
+        <>
+          <ClassComponent title={classString} />
+          <FunctionComponent title={funcString} />
+          <button onClick={() => setClassString("class")}>Click class</button>
+          <button onClick={() => setFuncString("func")}>Func class</button>
+        </>
+      )}
+
+      <button onClick={() => toggleComponents(!showHellowComponent)}>
+        Change Components
+      </button>
+    </>
   );
 }
-
-export default App;
