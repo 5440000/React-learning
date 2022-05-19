@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import UseState from './UseState';
 import { UseEffect } from './useEffect';
+import { UseRef } from "./useRef"
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,6 +11,7 @@ root.render(
   <React.StrictMode>
     <UseState />
     <UseEffect />
+    <UseRef />
   </React.StrictMode>
 );
 
